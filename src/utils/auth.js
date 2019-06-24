@@ -1,5 +1,5 @@
 export const isLoggedIn = () => {
-  return !!getToken();
+  return !!getToken() && getToken() !== "null";
 };
 
 export const setToken = token => {
