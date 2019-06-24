@@ -9,7 +9,7 @@ const NavBar = () => {
     <Navbar collapseOnSelect expand="lg">
       <Container>
         <Link to="/">
-          <Navbar.Brand href="/">Pintereach</Navbar.Brand>
+          <Navbar.Brand>Pintereach</Navbar.Brand>
         </Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
@@ -18,7 +18,7 @@ const NavBar = () => {
           </Nav>
           <Nav>
             <Link to="/login">
-              <Nav.Link href="/login">Login</Nav.Link>
+              Login
             </Link>
           </Nav>
         </Navbar.Collapse>
