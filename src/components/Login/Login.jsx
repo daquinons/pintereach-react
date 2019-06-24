@@ -5,23 +5,23 @@ import Button from 'react-bootstrap/Button';
 import withLogin from '../../hoc/withLogin';
 
 const Login = (props) => {
-  const refEmailInput = React.createRef();
+  const refUsernameInput = React.createRef();
   const refPasswordInput = React.createRef();
 
   const onLogin = () => {
-    props.login(refEmailInput.current.value, refPasswordInput.current.value);
+    props.login(refUsernameInput.current.value, refPasswordInput.current.value);
   };
 
   if (props.isLoggedIn) {
     return <Redirect to="/" />
   }
-  
+
   return (
     <Form>
       <Form.Group controlId="formBasicEmail">
         <Form.Label>Username</Form.Label>
         <Form.Control
-          ref={refEmailInput}
+          ref={refUsernameInput}
           type="text"
           placeholder="Enter username"
         />
