@@ -1,9 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { login } from '../state/reducers/login';
+import { login, setToken } from '../state/reducers/login';
 
 function withLogin(WrappedComponent) {
   const ToExtend = class extends React.Component {
+    componentDidMount() {
+      if (!this.props.isLoggedIn) {
+        this.props.setToken();
+      }
+    }
+
     render() {
       return <WrappedComponent {...this.props} />;
     }
@@ -11,14 +17,14 @@ function withLogin(WrappedComponent) {
 
   return connect(
     mapStateToProps,
-    { login }
+    { login, setToken }
   )(ToExtend);
 }
 
 
 const mapStateToProps = state => {
   return {
-    token: state.login.token
+    isLoggedIn: !!state.login.token && state.login.token !== "null"
   };
 };
 

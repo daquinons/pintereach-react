@@ -1,11 +1,15 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import { Link } from 'react-router-dom';
+import withLogin from '../../hoc/withLogin';
 
-const NavBar = (props) => {
+const NavBar = props => {
+  const onLogout = () => {
+    props.setToken("null");
+  };
+  console.log(props.isLoggedIn);
   return (
     <Navbar collapseOnSelect expand="lg">
       <Container>
@@ -17,7 +21,13 @@ const NavBar = (props) => {
           <Nav className="mr-auto">
             <Nav.Link href="/about">About</Nav.Link>
           </Nav>
-          <Link to="/login">Login</Link>
+          {props.isLoggedIn ? (
+            <a onClick={onLogout} href="/#">
+              Logout
+            </a>
+          ) : (
+            <Link to="/login">Login</Link>
+          )}
           <Nav />
         </Navbar.Collapse>
       </Container>
@@ -25,13 +35,4 @@ const NavBar = (props) => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    token: state.login.token
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  {}
-)(NavBar);
+export default withLogin(NavBar);

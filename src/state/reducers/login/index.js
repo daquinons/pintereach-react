@@ -12,7 +12,9 @@ export const loginReducer = (state = { token: undefined }, action) => {
   }
 };
 
-const setToken = (token) => {
+export const setToken = (token = loginUtils.getToken()) => {
+  loginUtils.setToken(token);
+
   return {
     type: types.SET_TOKEN,
     payload: token
@@ -24,7 +26,6 @@ export const login = (username, password) => dispatch => {
     .post(LOGIN_URL, { username, password })
     .then(res => {
       const token = res.data.token
-      loginUtils.setToken(token);
       dispatch(setToken(token));
     })
     .catch(error => {

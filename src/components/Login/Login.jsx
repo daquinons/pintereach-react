@@ -1,8 +1,8 @@
 import React from 'react';
 import { Redirect } from 'react-router'
-import withLogin from '../../hoc/withLogin';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import withLogin from '../../hoc/withLogin';
 
 const Login = (props) => {
   const refEmailInput = React.createRef();
@@ -12,10 +12,10 @@ const Login = (props) => {
     props.login(refEmailInput.current.value, refPasswordInput.current.value);
   };
 
-  if (props.token) {
+  if (props.isLoggedIn) {
     return <Redirect to="/" />
   }
-
+  
   return (
     <Form>
       <Form.Group controlId="formBasicEmail">
