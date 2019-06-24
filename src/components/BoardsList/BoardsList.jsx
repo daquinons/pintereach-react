@@ -9,19 +9,15 @@ const BoardsList = props => {
     props.getAllUserBoards(authUtils.getUserId());
   }, [props]);
 
-  const render = () => {
-    return(
-      <div>
-        <h2>My Boards</h2>
-        {props.boards.map(board => <li>{board.board_title}</li>)}
-      </div>
-    )
-  }
-
-  return(
-    render()
-  )
-}
+  return (
+    <div>
+      <h2>My Boards</h2>
+      {props.boards.map(board => (
+        <li>{board.board_title}</li>
+      ))}
+    </div>
+  );
+};
 
 const mapStateToProps = state => {
   return {
