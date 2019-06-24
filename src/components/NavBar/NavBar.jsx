@@ -7,9 +7,9 @@ import withLogin from '../../hoc/withLogin';
 
 const NavBar = props => {
   const onLogout = () => {
-    props.setToken("null");
+    props.setToken('null');
   };
-  console.log(props.isLoggedIn);
+
   return (
     <Navbar collapseOnSelect expand="lg">
       <Container>
@@ -19,6 +19,14 @@ const NavBar = props => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
+            {props.isLoggedIn ? (
+              <>
+                <Nav.Link href="/boards">My Boards</Nav.Link>
+                <Nav.Link href="/about">Browse</Nav.Link>
+              </>
+            ) : (
+              undefined
+            )}
             <Nav.Link href="/about">About</Nav.Link>
           </Nav>
           {props.isLoggedIn ? (
