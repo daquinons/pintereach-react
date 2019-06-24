@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { LOGIN_URL } from '../../../api';
+import { LOGIN_URL, REGISTER_URL } from '../../../api';
 import * as types from '../../actions/auth/actionTypes';
 import * as authUtils from '../../../utils/auth';
 
@@ -32,3 +32,12 @@ export const login = (username, password) => dispatch => {
       console.log(error);
     });
 };
+
+export const createUser = async (email, username, password) => {
+  try {
+    const dataResponse = await axios.post(REGISTER_URL, {email, username, password});
+    return dataResponse.data.message;
+  } catch (error) {
+    return new Error(error);
+  }
+}
