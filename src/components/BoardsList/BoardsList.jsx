@@ -8,7 +8,8 @@ const BoardsList = props => {
   React.useEffect(() => {
     props.getAllUserBoards(authUtils.getUserId());
   }, [props]);
-  const renderList = () => {
+
+  const render = () => {
     return(
       <div>
         <h2>My Boards</h2>
@@ -18,7 +19,7 @@ const BoardsList = props => {
   }
 
   return(
-    renderList()
+    render()
   )
 }
 
