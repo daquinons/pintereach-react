@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import * as authUtils from '../../utils/auth';
 import { getAllUserBoards } from '../../state/reducers/boards';
 import withRestrictedToAuth from '../../hoc/withRestrictedToAuth';
 
 const BoardsList = props => {
   const { userId, getAllUserBoards } = props;
+
   React.useEffect(() => {
     getAllUserBoards(userId);
   }, [userId]);
