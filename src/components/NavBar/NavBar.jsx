@@ -21,34 +21,32 @@ const NavBar = props => {
           <Nav className="mr-auto">
             {props.isLoggedIn ? (
               <>
-                <Nav.Link>
-                  <Link to="/boards">My Boards</Link>
-                </Nav.Link>
-                <Nav.Link>
-                  <Link to="/browse">Browse</Link>
-                </Nav.Link>
+                <Link className="nav-link" to="/boards">
+                  My Boards
+                </Link>
+                <Link className="nav-link" to="/browse">
+                  Browse
+                </Link>
               </>
             ) : (
               undefined
             )}
-            <Nav.Link>
-              <Link to="/about">About</Link>
-            </Nav.Link>
+            <Link className="nav-link" to="/about">
+              About
+            </Link>
           </Nav>
           {props.isLoggedIn ? (
-            <Nav.Link>
-              <a onClick={onLogout} href="/#">
-                Logout
-              </a>
+            <Nav.Link onClick={onLogout} href="/#">
+              Logout
             </Nav.Link>
           ) : (
             <>
-              <Nav.Link>
-                <Link to="/login">Login</Link>
-              </Nav.Link>
-              <Nav.Link>
-                <Link to="/register">Register</Link>
-              </Nav.Link>
+              <Link className="nav-link" to="/login">
+                Login
+              </Link>
+              <Link className="nav-link" to="/register">
+                Register
+              </Link>
             </>
           )}
           <Nav />
