@@ -2,7 +2,7 @@ import React from 'react';
 import { Redirect } from 'react-router'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import withLogin from '../../hoc/withLogin';
+import withLogin from '../../hoc/withAuth';
 
 const Login = (props) => {
   const refUsernameInput = React.createRef();

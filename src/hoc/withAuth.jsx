@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { login, setToken } from '../state/reducers/login';
+import { login, setToken } from '../state/reducers/auth';
 
 function withLogin(WrappedComponent) {
   const ToExtend = class extends React.Component {
@@ -24,7 +24,7 @@ function withLogin(WrappedComponent) {
 
 const mapStateToProps = state => {
   return {
-    isLoggedIn: !!state.login.token && state.login.token !== "null"
+    isLoggedIn: !!state.auth.token && state.auth.token !== "null"
   };
 };
 

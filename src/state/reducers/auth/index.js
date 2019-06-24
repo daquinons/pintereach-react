@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { LOGIN_URL } from '../../../api/';
-import * as types from '../../actions/login/actionTypes';
-import * as loginUtils from '../../../utils/login';
+import { LOGIN_URL } from '../../../api';
+import * as types from '../../actions/auth/actionTypes';
+import * as authUtils from '../../../utils/auth';
 
-export const loginReducer = (state = { token: undefined }, action) => {
+export const authReducer = (state = { token: undefined }, action) => {
   switch (action.type) {
     case types.SET_TOKEN:
       return { ...state, token: action.payload };
@@ -12,8 +12,8 @@ export const loginReducer = (state = { token: undefined }, action) => {
   }
 };
 
-export const setToken = (token = loginUtils.getToken()) => {
-  loginUtils.setToken(token);
+export const setToken = (token = authUtils.getToken()) => {
+  authUtils.setToken(token);
 
   return {
     type: types.SET_TOKEN,
