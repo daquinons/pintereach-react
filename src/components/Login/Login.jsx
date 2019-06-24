@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { login } from '../../state/reducers/login';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Spinner from 'react-bootstrap/Spinner';
 
 const Login = (props) => {
   const refEmailInput = React.createRef();
@@ -40,7 +41,7 @@ const Login = (props) => {
 
 const mapStateToProps = state => {
   return {
-    counter: state.counter
+    token: state.login.token
   };
 };
 
