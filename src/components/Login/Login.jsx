@@ -1,7 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Redirect } from 'react-router'
-import { login } from '../../state/reducers/login';
+import withLogin from '../../hoc/withLogin';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
@@ -43,13 +42,4 @@ const Login = (props) => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    token: state.login.token
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  { login }
-)(Login);
+export default withLogin(Login);
