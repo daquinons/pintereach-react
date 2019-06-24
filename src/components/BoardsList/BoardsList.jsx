@@ -7,7 +7,7 @@ import withRestrictedToAuth from '../../hoc/withRestrictedToAuth';
 const BoardsList = props => {
   React.useEffect(() => {
     props.getAllUserBoards(authUtils.getUserId());
-  }, [props]);
+  }, []);
 
   return (
     <div>
