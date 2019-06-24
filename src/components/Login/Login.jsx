@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router'
 import { login } from '../../state/reducers/login';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import Spinner from 'react-bootstrap/Spinner';
 
 const Login = (props) => {
   const refEmailInput = React.createRef();
@@ -12,6 +12,10 @@ const Login = (props) => {
   const onLogin = () => {
     props.login(refEmailInput.current.value, refPasswordInput.current.value);
   };
+
+  if (props.token) {
+    return <Redirect to="/" />
+  }
 
   return (
     <Form>
