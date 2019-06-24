@@ -22,7 +22,7 @@ const NavBar = props => {
             {props.isLoggedIn ? (
               <>
                 <Nav.Link href="/boards">My Boards</Nav.Link>
-                <Nav.Link href="/about">Browse</Nav.Link>
+                <Nav.Link href="/browse">Browse</Nav.Link>
               </>
             ) : (
               undefined
