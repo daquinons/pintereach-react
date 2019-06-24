@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { LOGIN_URL } from '../../../api/';
 import * as types from '../../actions/login/actionTypes';
+import * as loginUtils from '../../../utils/login';
 
 export const loginReducer = (state = { token: undefined }, action) => {
   switch (action.type) {
@@ -22,7 +23,9 @@ export const login = (username, password) => dispatch => {
   axios
     .post(LOGIN_URL, { username, password })
     .then(res => {
-      dispatch(setToken(res.data.token));
+      const token = res.data.token
+      loginUtils.setToken(token);
+      dispatch(setToken(token));
     })
     .catch(error => {
       console.log(error);
