@@ -26,7 +26,7 @@ export const setToken = (token = authUtils.getToken()) => {
   };
 };
 
-export const setUserId = userId => {
+export const setUserId = (userId = authUtils.getUserId()) => {
   authUtils.setUserId(userId);
 
   return {

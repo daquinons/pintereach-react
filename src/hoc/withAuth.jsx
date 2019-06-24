@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { login, setToken } from '../state/reducers/auth';
+import { login, setToken, setUserId } from '../state/reducers/auth';
 
 function withLogin(WrappedComponent) {
   const ToExtend = class extends React.Component {
     componentDidMount() {
       if (!this.props.isLoggedIn) {
         this.props.setToken();
+        this.props.setUserId();
       }
     }
 
@@ -17,7 +18,7 @@ function withLogin(WrappedComponent) {
 
   return connect(
     mapStateToProps,
-    { login, setToken }
+    { login, setToken, setUserId }
   )(ToExtend);
 }
 

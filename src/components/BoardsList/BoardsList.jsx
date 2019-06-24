@@ -5,9 +5,10 @@ import { getAllUserBoards } from '../../state/reducers/boards';
 import withRestrictedToAuth from '../../hoc/withRestrictedToAuth';
 
 const BoardsList = props => {
+  const { userId, getAllUserBoards } = props;
   React.useEffect(() => {
-    props.getAllUserBoards(authUtils.getUserId());
-  }, []);
+    getAllUserBoards(userId);
+  }, [userId]);
 
   return (
     <div>
