@@ -6,6 +6,10 @@ import { NavLink } from 'react-router-dom';
 import withLogin from '../../hoc/withAuth';
 import styled from 'styled-components';
 
+const StyledNavbar = styled(Navbar)`
+  background-color: #0b000e;
+`;
+
 const StyledBrand = styled(Navbar.Brand)`
   &&& {
     color: #ff0075;
@@ -26,7 +30,7 @@ const NavBar = props => {
   };
 
   return (
-    <Navbar collapseOnSelect expand="lg" variant="dark">
+    <StyledNavbar collapseOnSelect expand="lg" variant="dark">
       <Container>
         <StyledNavLink to="/">
           <StyledBrand>Pintereach</StyledBrand>
@@ -67,7 +71,7 @@ const NavBar = props => {
           <Nav />
         </Navbar.Collapse>
       </Container>
-    </Navbar>
+    </StyledNavbar>
   );
 };
 

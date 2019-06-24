@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getAllUserBoards } from '../../state/reducers/boards';
 import withRestrictedToAuth from '../../hoc/withRestrictedToAuth';
+import HeaderContainer from '../HeaderContainer/HeaderContainer';
+import Container from 'react-bootstrap/Container';
 
 const BoardsList = props => {
   const { userId, getAllUserBoards } = props;
@@ -12,10 +14,14 @@ const BoardsList = props => {
 
   return (
     <div>
-      <h2>My Boards</h2>
-      {props.boards.map(board => (
-        <li>{board.board_title}</li>
-      ))}
+      <HeaderContainer>
+        <span>My Boards</span>
+      </HeaderContainer>
+      <Container>
+        {props.boards.map(board => (
+          <li>{board.board_title}</li>
+        ))}
+      </Container>
     </div>
   );
 };
