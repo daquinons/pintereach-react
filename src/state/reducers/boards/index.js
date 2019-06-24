@@ -14,7 +14,7 @@ export const boardsReducer = (state = { boards: [] }, action) => {
 export const loadUserBoards = boards => {
   return {
     type: types.GET_ALL_USER_BOARDS,
-    payload: boards
+    payload: boards.boards
   };
 };
 
@@ -22,7 +22,7 @@ export const getAllUserBoards = userId => async dispatch => {
   try {
     const response = await authUtils
       .axiosAuth()
-      .get(BOARDS_URL + String(userId));
+      .get(`${BOARDS_URL}${userId}/all`);
     dispatch(loadUserBoards(response.data));
   } catch (error) {
     console.log(error);
