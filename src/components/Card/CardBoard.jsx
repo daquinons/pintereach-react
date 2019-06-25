@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { deleteBoard } from '../../state/reducers/boards';
 import Card, { CloseButton } from './Card';
-import withRestrictedToAuth from '../../hoc/withRestrictedToAuth';
 
 const CardBoard = props => {
   const { board } = props;
@@ -33,5 +32,5 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   { deleteBoard }
-)(withRestrictedToAuth(CardBoard));
+)(CardBoard);
 
