@@ -1,6 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { deleteBoard } from '../../state/reducers/boards';
 import Card from './Card';
 import styled from 'styled-components';
+import withRestrictedToAuth from '../../hoc/withRestrictedToAuth';
 
 const CardBoard = props => {
   const { board } = props;
@@ -24,6 +27,7 @@ const CardBoard = props => {
     event.stopPropagation();
     // eslint-disable-next-line no-restricted-globals
     const toDelete = confirm("Do you want to delete this board? All your articles will be lost forever");
+    if (toDelete) props.deleteBoard(board.id, props.userId);
   }
 
   return (
@@ -36,4 +40,14 @@ const CardBoard = props => {
   );
 };
 
-export default CardBoard;
+const mapStateToProps = state => {
+  return {
+    userId: state.auth.userId
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { deleteBoard }
+)(withRestrictedToAuth(CardBoard));
+
