@@ -47,9 +47,6 @@ const NavBar = props => {
             ) : (
               undefined
             )}
-            <StyledNavLink activeStyle={{color: '#ff0075'}} className="nav-NavLink" to="/about">
-              About
-            </StyledNavLink>
           </Nav>
           {props.isLoggedIn ? (
             <StyledNavLink activeStyle={{color: '#ff0075'}} onClick={onLogout} to="/#">
