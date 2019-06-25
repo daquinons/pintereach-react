@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getAllUserBoards, postBoard } from '../../state/reducers/boards';
 import withRestrictedToAuth from '../../hoc/withRestrictedToAuth';
+import ButtonLink from '../ButtonLink/ButtonLink';
 import HeaderContainer from '../HeaderContainer/HeaderContainer';
 import StyledContainerFlex from '../StyledContainerFlex/StyledContainerFlex';
 import CardBoard from '../Card/CardBoard';
@@ -26,7 +27,7 @@ const BoardsList = props => {
         <Row>
           <Col sm={4}>My Boards</Col>
           <Col className="text-md-right" sm={{ span: 1, offset: 7 }}>
-            <button onClick={addNew}>Add</button>
+            <ButtonLink onClick={addNew}>Add</ButtonLink>
           </Col>
         </Row>
       </HeaderContainer>
