@@ -32,7 +32,7 @@ const BoardsList = props => {
         </Row>
       </HeaderContainer>
       <StyledContainerFlex>
-        {props.boards ? (
+        {props.boards.length > 0 ? (
           props.boards.map((board, index) => (
             <CardBoard key={index} board={board} />
           ))
