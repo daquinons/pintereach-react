@@ -4,9 +4,17 @@ import { Link } from 'react-router-dom';
 import { getAllUserBoards, postBoard } from '../../state/reducers/boards';
 import withRestrictedToAuth from '../../hoc/withRestrictedToAuth';
 import HeaderContainer from '../HeaderContainer/HeaderContainer';
+import Card from '../Card/Card';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import styled from 'styled-components';
+
+const StyledContainerFlex = styled(Container)`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+`;
 
 const BoardsList = props => {
   const { userId, getAllUserBoards } = props;
@@ -30,13 +38,13 @@ const BoardsList = props => {
           </Col>
         </Row>
       </HeaderContainer>
-      <Container>
+      <StyledContainerFlex>
         {props.boards.map(board => (
-          <p>
-            <Link to={`/boards/${board.id}`}>{board.board_title}</Link>
-          </p>
+          <Card url={`/boards/${board.id}`}>
+            <p>{board.board_title}</p>
+          </Card>
         ))}
-      </Container>
+      </StyledContainerFlex>
     </div>
   );
 };
