@@ -55,7 +55,7 @@ const ArticlesList = props => {
           {articles ? (
             articles.map((article, index) => <CardArticle key={index} article={article} />)
           ) : (
-            <div>No articles</div>
+            <div>No articles, please add one to your board.</div>
           )}
         </StyledContainerFlex>
       </div>

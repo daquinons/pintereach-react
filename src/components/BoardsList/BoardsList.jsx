@@ -32,9 +32,13 @@ const BoardsList = props => {
         </Row>
       </HeaderContainer>
       <StyledContainerFlex>
-        {props.boards.map((board, index) => (
-          <CardBoard key={index} board={board} />
-        ))}
+        {props.boards ? (
+          props.boards.map((board, index) => (
+            <CardBoard key={index} board={board} />
+          ))
+        ) : (
+          <div>No boards, please add one.</div>
+        )}
       </StyledContainerFlex>
     </div>
   );
