@@ -28,9 +28,10 @@ export const CloseButton = styled.div`
 color: #ff0075;
 padding: 0.5rem;
 position: absolute;
-font-weight: 700;
+font-size: 1.5rem;
+font-weight: 600;
 top: 0px;
-right: 0px;
+right: 5px;
 -webkit-touch-callout: none;
 -webkit-user-select: none;
    -moz-user-select: none; 
