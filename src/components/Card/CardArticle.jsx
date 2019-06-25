@@ -5,7 +5,7 @@ const CardArticle = props => {
   const { article } = props;
 
   return (
-    <a href={article.url} target="_blank">
+    <a href={article.url} rel="noopener noreferrer" target="_blank">
       <Card>
         <p>{article.article_label}</p>
       </Card>

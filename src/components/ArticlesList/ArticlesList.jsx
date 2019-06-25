@@ -15,21 +15,24 @@ const ArticlesList = props => {
   const [currentBoard, setCurrentBoard] = React.useState();
   const [articles, setArticles] = React.useState([]);
 
+
   React.useEffect(() => {
     getAllUserBoards(userId);
   }, [userId, getAllUserBoards]);
 
   React.useEffect(() => {
-    getArticlesForCurrentBoard();
-  }, [boards]);
+    const getArticlesForCurrentBoard = () => {
+      const selected = boards.find(board => String(board.id) === boardId);
+      if (selected) {
+        setCurrentBoard(selected);
+        setArticles(selected.articles);
+      }
+    };
 
-  const getArticlesForCurrentBoard = () => {
-    const selected = boards.find(board => String(board.id) === boardId);
-    if (selected) {
-      setCurrentBoard(selected);
-      setArticles(selected.articles);
-    }
-  };
+    getArticlesForCurrentBoard();
+  }, [boards, boardId]);
+
+
 
   const addNew = () => {
     const nameBoard = prompt('Please, enter the name for your new board', '');
