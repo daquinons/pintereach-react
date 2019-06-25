@@ -10,7 +10,8 @@ const StyledCard = styled.div`
   width: 200px;
   height: 250px;
   box-shadow: rgba(0, 0, 0, 0.0470588) 0px 0px 0px 2px;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  margin-right: 1rem;
 `;
 
 const Card = withRouter((props) => {
