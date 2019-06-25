@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from './Card';
+import Card, { CloseButton } from './Card';
 
 const CardArticle = props => {
   const { article } = props;
@@ -7,7 +7,10 @@ const CardArticle = props => {
   return (
     <a href={article.url} rel="noopener noreferrer" target="_blank">
       <Card>
-        <p>{article.article_label}</p>
+        <>
+          <CloseButton>X</CloseButton>
+          <p>{article.article_label}</p>
+        </>
       </Card>
     </a>
   );
