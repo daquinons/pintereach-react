@@ -28,3 +28,12 @@ export const getAllUserBoards = userId => async dispatch => {
     console.log(error);
   }
 };
+
+export const postBoard = (boardTitle, userId) => async dispatch => {
+  try {
+    await authUtils.axiosAuth().post(BOARDS_URL, {board_title: boardTitle, user_id: userId})
+    dispatch(getAllUserBoards(userId));
+  } catch (error) {
+    console.log(error)
+  }
+}

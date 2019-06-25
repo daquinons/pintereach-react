@@ -55,7 +55,7 @@ const NavBar = props => {
             </StyledNavLink>
           </Nav>
           {props.isLoggedIn ? (
-            <StyledNavLink activeStyle={{color: '#ff0075'}} onClick={onLogout} href="/#">
+            <StyledNavLink activeStyle={{color: '#ff0075'}} onClick={onLogout} to="/#">
               Logout
             </StyledNavLink>
           ) : (

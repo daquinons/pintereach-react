@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getAllUserBoards } from '../../state/reducers/boards';
+import { getAllUserBoards, postBoard } from '../../state/reducers/boards';
 import withRestrictedToAuth from '../../hoc/withRestrictedToAuth';
 import HeaderContainer from '../HeaderContainer/HeaderContainer';
 import Container from 'react-bootstrap/Container';
@@ -14,13 +14,18 @@ const BoardsList = props => {
     getAllUserBoards(userId);
   }, [userId, getAllUserBoards]);
 
+  const addNew = () => {
+    const nameBoard = prompt("Please, enter the name for your new board", "");
+    if (nameBoard) props.postBoard(nameBoard, props.userId); 
+  }
+
   return (
     <div>
       <HeaderContainer>
         <Row>
           <Col sm={4}>My Boards</Col>
           <Col className="text-md-right" sm={{ span: 1, offset: 7 }}>
-          <button>Add</button>
+          <button onClick={addNew}>Add</button>
           </Col>
         </Row>
       </HeaderContainer>
@@ -42,5 +47,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getAllUserBoards }
+  { getAllUserBoards, postBoard }
 )(withRestrictedToAuth(BoardsList));
