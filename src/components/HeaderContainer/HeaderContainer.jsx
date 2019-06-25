@@ -8,7 +8,8 @@ const HeaderContainer = styled.div`
   box-shadow: rgba(0, 0, 0, 0.0980392) 0px 2px 0px 0px;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
-  height: 2.5rem;
+  min-height: 2.5rem;
+  padding: 0.5rem;
   width: 100%;
   font-weight: 700;
   font-size: 14px;

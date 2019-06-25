@@ -4,6 +4,8 @@ import { getAllUserBoards } from '../../state/reducers/boards';
 import withRestrictedToAuth from '../../hoc/withRestrictedToAuth';
 import HeaderContainer from '../HeaderContainer/HeaderContainer';
 import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 const BoardsList = props => {
   const { userId, getAllUserBoards } = props;
@@ -15,11 +17,16 @@ const BoardsList = props => {
   return (
     <div>
       <HeaderContainer>
-        <span>My Boards</span>
+        <Row>
+          <Col sm={4}>My Boards</Col>
+          <Col className="text-md-right" sm={{ span: 1, offset: 7 }}>
+          <button>Add</button>
+          </Col>
+        </Row>
       </HeaderContainer>
       <Container>
         {props.boards.map(board => (
-          <li>{board.board_title}</li>
+          <p>{board.board_title}</p>
         ))}
       </Container>
     </div>
