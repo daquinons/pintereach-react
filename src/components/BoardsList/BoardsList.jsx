@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { getAllUserBoards, postBoard } from '../../state/reducers/boards';
 import withRestrictedToAuth from '../../hoc/withRestrictedToAuth';
 import HeaderContainer from '../HeaderContainer/HeaderContainer';
@@ -31,7 +32,9 @@ const BoardsList = props => {
       </HeaderContainer>
       <Container>
         {props.boards.map(board => (
-          <p>{board.board_title}</p>
+          <p>
+            <Link to={`/boards/${board.id}`}>{board.board_title}</Link>
+          </p>
         ))}
       </Container>
     </div>
