@@ -52,7 +52,7 @@ const ArticlesList = props => {
         </HeaderContainer>
         <StyledContainerFlex>
           {articles ? (
-            articles.map(article => <CardArticle article={article} />)
+            articles.map((article, index) => <CardArticle key={index} article={article} />)
           ) : (
             <div>No articles</div>
           )}

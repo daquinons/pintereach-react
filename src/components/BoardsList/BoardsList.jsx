@@ -31,8 +31,8 @@ const BoardsList = props => {
         </Row>
       </HeaderContainer>
       <StyledContainerFlex>
-        {props.boards.map(board => (
-          <CardBoard board={board} />
+        {props.boards.map((board, index) => (
+          <CardBoard key={index} board={board} />
         ))}
       </StyledContainerFlex>
     </div>
