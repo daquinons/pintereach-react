@@ -25,7 +25,7 @@ const CardBoard = props => {
     if (toDelete) props.deleteBoard(board.id, props.userId);
   };
 
-  const numberOfArticlesInBoard = board.articles ? board.articles.length : 0;
+  const numberOfArticlesInBoard = board.articles ? board.articles.length : "no";
 
   return (
     <Card url={`/boards/${board.id}`}>
