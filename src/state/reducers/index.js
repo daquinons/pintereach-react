@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
-import { counterReducer } from './counter';
+import { authReducer } from './auth';
+import { boardsReducer } from './boards';
 
 export default combineReducers({
-  counter: counterReducer
+  auth: authReducer,
+  boards: boardsReducer
 });
