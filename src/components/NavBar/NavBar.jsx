@@ -43,9 +43,6 @@ const NavBar = props => {
                 <StyledNavLink activeStyle={{color: '#ff0075'}} className="nav-NavLink" to="/boards">
                   My Boards
                 </StyledNavLink>
-                <StyledNavLink activeStyle={{color: '#ff0075'}} className="nav-NavLink" to="/browse">
-                  Browse
-                </StyledNavLink>
               </>
             ) : (
               undefined
