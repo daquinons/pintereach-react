@@ -2,10 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getAllUserBoards, postBoard } from '../../state/reducers/boards';
 import withRestrictedToAuth from '../../hoc/withRestrictedToAuth';
+import CardArticle from '../Card/CardArticle';
 import HeaderContainer from '../HeaderContainer/HeaderContainer';
-import Container from 'react-bootstrap/Container';
+import StyledContainerFlex from '../StyledContainerFlex/StyledContainerFlex';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+
 
 const ArticlesList = props => {
   const { userId, getAllUserBoards, boards } = props;
@@ -25,7 +27,7 @@ const ArticlesList = props => {
     const selected = boards.find(board => String(board.id) === boardId);
     if (selected) {
       setCurrentBoard(selected);
-      setArticles(selected.articles);  
+      setArticles(selected.articles);
     }
   };
 
@@ -45,11 +47,13 @@ const ArticlesList = props => {
             </Col>
           </Row>
         </HeaderContainer>
-        <Container>
-          {articles ? articles.map(article => (
-            <a href={article.url} target="_blank"><p>{article.article_label}</p></a>
-          )) : <div>No articles</div>}
-        </Container>
+        <StyledContainerFlex>
+          {articles ? (
+            articles.map(article => <CardArticle article={article} />)
+          ) : (
+            <div>No articles</div>
+          )}
+        </StyledContainerFlex>
       </div>
     );
   }

@@ -1,20 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { getAllUserBoards, postBoard } from '../../state/reducers/boards';
 import withRestrictedToAuth from '../../hoc/withRestrictedToAuth';
 import HeaderContainer from '../HeaderContainer/HeaderContainer';
+import StyledContainerFlex from '../StyledContainerFlex/StyledContainerFlex';
 import CardBoard from '../Card/CardBoard';
-import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import styled from 'styled-components';
-
-const StyledContainerFlex = styled(Container)`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-`;
 
 const BoardsList = props => {
   const { userId, getAllUserBoards } = props;
