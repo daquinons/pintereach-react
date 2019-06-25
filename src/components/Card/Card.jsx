@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 const StyledCard = styled.div`
   cursor: pointer;
+  position: relative;
   background-color: white;
   border-radius: 4px;
   width: 200px;
