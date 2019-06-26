@@ -44,7 +44,7 @@ export const login = (username, password, onSuccess, setError) => {
       onSuccess(token, userId);
     })
     .catch(error => {
-      setError(error.message)
+      setError(error.message);
     });
 };
 

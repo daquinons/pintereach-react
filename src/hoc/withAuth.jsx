@@ -22,10 +22,9 @@ function withAuth(WrappedComponent) {
   )(ToExtend);
 }
 
-
 const mapStateToProps = state => {
   return {
-    isLoggedIn: !!state.auth.token && state.auth.token !== "null"
+    isLoggedIn: !!state.auth.token && state.auth.token !== 'null'
   };
 };
 

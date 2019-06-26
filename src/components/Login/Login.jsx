@@ -27,7 +27,7 @@ const Login = props => {
   const onSuccess = (token, userId) => {
     props.setUserId(userId);
     props.setToken(token);
-  }
+  };
 
   const handleMessageDismiss = () => {
     setErrorMessage(undefined);
