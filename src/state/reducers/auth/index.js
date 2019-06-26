@@ -44,6 +44,7 @@ export const login = (username, password, onSuccess, setError) => {
       onSuccess(token, userId);
     })
     .catch(error => {
+      console.log(error);
       setError(error.message);
     });
 };
@@ -57,6 +58,6 @@ export const createUser = async (email, username, password) => {
     });
     return dataResponse.data.message;
   } catch (error) {
-    return new Error(error);
+    throw new Error(error);
   }
 };
