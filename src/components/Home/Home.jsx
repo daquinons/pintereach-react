@@ -8,6 +8,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import styled from 'styled-components';
+import * as authUtils from '../../utils/auth';
 
 const StyledButton = styled(Button)`
   background-color: #ff0075;
@@ -44,11 +45,20 @@ const Home = props => {
       <Container>
         <Row>
           <Col className="text-center" md={{ span: 6, offset: 3 }}>
-            <Link to="/register">
-              <StyledButton variant="primary" size="lg">
-                Sign Up
-              </StyledButton>
-            </Link>
+            {authUtils.isLoggedIn() ? (
+              <Link to="/boards">
+                {' '}
+                <StyledButton variant="primary" size="lg">
+                  Go to your boards
+                </StyledButton>{' '}
+              </Link>
+            ) : (
+              <Link to="/register">
+                <StyledButton variant="primary" size="lg">
+                  Sign Up
+                </StyledButton>
+              </Link>
+            )}
           </Col>
         </Row>
       </Container>
