@@ -6,16 +6,16 @@ import CardArticle from '../Card/CardArticle';
 import HeaderContainer from '../HeaderContainer/HeaderContainer';
 import ButtonLink from '../ButtonLink/ButtonLink';
 import StyledContainerFlex from '../StyledContainerFlex/StyledContainerFlex';
+import AddArticleForm from '../AddArticleForm/AddArticleForm';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-
 
 const ArticlesList = props => {
   const { userId, getAllUserBoards, boards } = props;
   const boardId = props.match.params.id;
   const [currentBoard, setCurrentBoard] = React.useState();
   const [articles, setArticles] = React.useState([]);
-
+  const [modalShow, setModalShow] = React.useState(false);
 
   React.useEffect(() => {
     getAllUserBoards(userId);
@@ -33,11 +33,8 @@ const ArticlesList = props => {
     getArticlesForCurrentBoard();
   }, [boards, boardId]);
 
-
-
-  const addNew = () => {
-    const nameBoard = prompt('Please, enter the name for your new board', '');
-    if (nameBoard) props.postBoard(nameBoard, props.userId);
+  const modalClose = () => {
+    setModalShow(false);
   };
 
   if (currentBoard) {
@@ -47,13 +44,16 @@ const ArticlesList = props => {
           <Row>
             <Col sm={4}>{currentBoard.board_title}</Col>
             <Col className="text-md-right" sm={{ span: 1, offset: 7 }}>
-              <ButtonLink onClick={addNew}>Add</ButtonLink>
+              <ButtonLink onClick={() => setModalShow(true)}>Add</ButtonLink>
+              <AddArticleForm show={modalShow} onHide={modalClose} />
             </Col>
           </Row>
         </HeaderContainer>
         <StyledContainerFlex>
           {articles ? (
-            articles.map((article, index) => <CardArticle key={index} article={article} />)
+            articles.map((article, index) => (
+              <CardArticle key={index} article={article} />
+            ))
           ) : (
             <div>No articles, please add one to your board.</div>
           )}
