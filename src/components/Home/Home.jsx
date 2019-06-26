@@ -22,18 +22,25 @@ const Home = props => {
           <Col sm={4}>Welcome to Pintereach</Col>
         </Row>
       </HeaderContainer>
-      <StyledContainerFlex>
-        <CardHome text="Pintereach is" />
-        <CardHome text="a solution to help" />
-        <CardHome text="researchers" />
-        <CardHome text="to keep track of" />
-        <CardHome text="articles and papers." />
-        <CardHome text="" />
-        <CardHome text="Create multiple boards" />
-        <CardHome text="and save all the urls" />
-        <CardHome text="so you will be able" />
-        <CardHome text="to access them later." />
-      </StyledContainerFlex>
+
+      <Container>
+        <Row>
+          <Col className="text-center" md={{ span: 12 }}>
+            <StyledContainerFlex>
+              <CardHome text="Pintereach is" />
+              <CardHome text="a solution to help" />
+              <CardHome text="researchers" />
+              <CardHome text="to keep track of" />
+              <CardHome text="articles and papers." />
+              <CardHome text="" />
+              <CardHome text="Create multiple boards" />
+              <CardHome text="and save all the urls" />
+              <CardHome text="so you will be able" />
+              <CardHome text="to access them later." />
+            </StyledContainerFlex>
+          </Col>
+        </Row>
+      </Container>
       <Container>
         <Row>
           <Col className="text-center" md={{ span: 6, offset: 3 }}>
