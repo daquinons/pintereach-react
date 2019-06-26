@@ -48,6 +48,15 @@ export const deleteBoard = (boardId, userId) => async dispatch => {
   }
 }
 
+export const getArticles = async boardId => {
+  try {
+    const response = await authUtils.axiosAuth().get(`${ARTICLES_URL}${boardId}`)
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export const postArticle = (articleLabel, articleUrl, boardId, userId) => async dispatch => {
   try {
     await authUtils.axiosAuth().post(ARTICLES_URL, {article_label: articleLabel, url: articleUrl, board_id: boardId})
