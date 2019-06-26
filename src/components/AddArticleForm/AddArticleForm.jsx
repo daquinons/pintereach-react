@@ -7,10 +7,16 @@ const AddArticleForm = props => {
   const refTitleInput = React.createRef();
   const refUrlInput = React.createRef();
 
-  const addArticle = (event) => {
+  const addArticle = event => {
     event.preventDefault();
-    console.log(refTitleInput.current.value, refUrlInput.current.value);
-  }
+    props.addArticle(
+      refTitleInput.current.value,
+      refUrlInput.current.value,
+      props.boardId,
+      props.userId
+    );
+    props.onHide();
+  };
 
   return (
     <Modal
@@ -28,7 +34,11 @@ const AddArticleForm = props => {
         <Modal.Body>
           <Form.Group controlId="formBasicTitle">
             <Form.Label>Article title</Form.Label>
-            <Form.Control ref={refTitleInput} type="text" placeholder="Enter title" />
+            <Form.Control
+              ref={refTitleInput}
+              type="text"
+              placeholder="Enter title"
+            />
           </Form.Group>
 
           <Form.Group controlId="formBasicUrl">
