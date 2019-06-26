@@ -20,7 +20,7 @@ const CardArticle = props => {
   return (
     <Card>
       <div style={{width: "100%", height: "100%"}} onClick={openArticle}>
-        <CloseButton onClick={onClose}>X</CloseButton>
+        <CloseButton onClick={onClose}>×</CloseButton>
         <p>{article.article_label}</p>
       </div>
     </Card>
