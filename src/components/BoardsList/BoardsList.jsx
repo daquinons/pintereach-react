@@ -4,21 +4,22 @@ import { getAllUserBoards, postBoard } from '../../state/reducers/boards';
 import withRestrictedToAuth from '../../hoc/withRestrictedToAuth';
 import ButtonLink from '../ButtonLink/ButtonLink';
 import HeaderContainer from '../HeaderContainer/HeaderContainer';
+import AddBoardForm from '../AddBoardForm/AddBoardForm';
 import StyledContainerFlex from '../StyledContainerFlex/StyledContainerFlex';
 import CardBoard from '../Card/CardBoard';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 const BoardsList = props => {
-  const { userId, getAllUserBoards } = props;
+  const { userId, getAllUserBoards, postBoard } = props;
+  const [modalShow, setModalShow] = React.useState(false);
 
   React.useEffect(() => {
     getAllUserBoards(userId);
   }, [userId, getAllUserBoards]);
 
-  const addNew = () => {
-    const nameBoard = prompt('Please, enter the name for your new board', '');
-    if (nameBoard) props.postBoard(nameBoard, props.userId);
+  const modalClose = () => {
+    setModalShow(false);
   };
 
   return (
@@ -27,7 +28,13 @@ const BoardsList = props => {
         <Row>
           <Col sm={4}>My Boards</Col>
           <Col className="text-md-right" sm={{ span: 1, offset: 7 }}>
-            <ButtonLink onClick={addNew}>Add</ButtonLink>
+            <ButtonLink onClick={() => setModalShow(true)}>Add</ButtonLink>
+            <AddBoardForm
+                addBoard={postBoard}
+                userId={userId}
+                show={modalShow}
+                onHide={modalClose}
+              />
           </Col>
         </Row>
       </HeaderContainer>
