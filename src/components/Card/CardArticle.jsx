@@ -44,9 +44,7 @@ const StyledCardBoardContainer = styled.div`
   padding: 1rem;
 `;
 
-const StyledCardArticle = styled(CardArticle)``;
-
 export default connect(
   mapStateToProps,
   { deleteArticle }
-)(StyledCardArticle);
+)(CardArticle);
