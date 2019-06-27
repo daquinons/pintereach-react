@@ -33,11 +33,11 @@ const Home = props => {
               <CardHome text="researchers" />
               <CardHome text="to keep track of" />
               <CardHome text="articles and papers." />
-              <CardHome text="" />
-              <CardHome text="Create multiple boards" />
-              <CardHome text="and save all the urls" />
-              <CardHome text="so you will be able" />
-              <CardHome text="to access them later." />
+              <CardHome text="Create multiple" />
+              <CardHome text="boards" />
+              <CardHome text="save links" />
+              <CardHome text="and access them" />
+              <CardHome text="whenever you want." />
             </StyledContainerFlex>
           </Col>
         </Row>
