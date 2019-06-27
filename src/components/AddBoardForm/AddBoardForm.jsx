@@ -22,13 +22,13 @@ const AddBoardForm = props => {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Add a new article
+          Add a new board
         </Modal.Title>
       </Modal.Header>
       <Form onSubmit={addBoard}>
         <Modal.Body>
           <Form.Group controlId="formBasicTitle">
-            <Form.Label>Article title</Form.Label>
+            <Form.Label>Board title</Form.Label>
             <Form.Control
               ref={refTitleInput}
               type="text"
