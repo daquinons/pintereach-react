@@ -35,17 +35,17 @@ export const setUserId = (userId = authUtils.getUserId()) => {
   };
 };
 
-export const login = (username, password) => dispatch => {
+export const login = (username, password, onSuccess, setError) => {
   axios
     .post(LOGIN_URL, { username, password })
     .then(res => {
       const token = res.data.token;
       const userId = res.data.id;
-      dispatch(setToken(token));
-      dispatch(setUserId(userId));
+      onSuccess(token, userId);
     })
     .catch(error => {
       console.log(error);
+      setError(error.message);
     });
 };
 
@@ -58,6 +58,6 @@ export const createUser = async (email, username, password) => {
     });
     return dataResponse.data.message;
   } catch (error) {
-    return new Error(error);
+    throw new Error(error);
   }
 };

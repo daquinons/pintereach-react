@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { deleteArticle } from '../../state/reducers/boards';
 import Card, { CloseButton } from './Card';
+import styled from 'styled-components';
 
 const CardArticle = props => {
   const { article } = props;
@@ -19,10 +20,11 @@ const CardArticle = props => {
 
   return (
     <Card>
-      <div style={{width: "100%", height: "100%"}} onClick={openArticle}>
-        <CloseButton onClick={onClose}>X</CloseButton>
-        <p>{article.article_label}</p>
-      </div>
+      <StyledCardBoardContainer onClick={openArticle}>
+          <CloseButton onClick={onClose}>×</CloseButton>
+          <h4>{article.article_label}</h4>
+          <p><a href={article.url} target="_blank" rel="noopener noreferrer">{article.url}</a></p>
+      </StyledCardBoardContainer>
     </Card>
   );
 };
@@ -32,6 +34,15 @@ const mapStateToProps = state => {
     userId: state.auth.userId
   };
 };
+
+const StyledCardBoardContainer = styled.div`
+  height: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 1rem;
+`;
 
 export default connect(
   mapStateToProps,

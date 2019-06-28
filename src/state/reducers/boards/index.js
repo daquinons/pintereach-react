@@ -40,7 +40,26 @@ export const postBoard = (boardTitle, userId) => async dispatch => {
 
 export const deleteBoard = (boardId, userId) => async dispatch => {
   try {
-    await authUtils.axiosAuth().delete(`${BOARDS_URL}${boardId}`)
+    const data = await authUtils.axiosAuth().delete(`${BOARDS_URL}${boardId}`)
+    console.log(data);
+    dispatch(getAllUserBoards(userId));
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const getArticles = async boardId => {
+  try {
+    const response = await authUtils.axiosAuth().get(`${ARTICLES_URL}${boardId}`)
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const postArticle = (articleLabel, articleUrl, boardId, userId) => async dispatch => {
+  try {
+    await authUtils.axiosAuth().post(ARTICLES_URL, {article_label: articleLabel, url: articleUrl, board_id: boardId})
     dispatch(getAllUserBoards(userId));
   } catch (error) {
     console.log(error)

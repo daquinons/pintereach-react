@@ -30,7 +30,7 @@ const CardBoard = props => {
   return (
     <Card url={`/boards/${board.id}`}>
       <StyledCardBoardContainer>
-        <CloseButton onClick={onClose}>X</CloseButton>
+        <CloseButton onClick={onClose}>×</CloseButton>
         <h4>{board.board_title}</h4>
         <p>This board has {numberOfArticlesInBoard} articles</p>
       </StyledCardBoardContainer>

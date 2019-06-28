@@ -11,7 +11,7 @@ const StyledContainer = styled(Container)`
   &&& {
     max-width: auto;
     min-width: 95%;
-    min-height: 20rem;
+    min-height: 30rem;
     border-radius: 4px;
     padding: 0;
     padding-bottom: 2rem;

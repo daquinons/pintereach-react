@@ -1,8 +1,10 @@
 import React from 'react';
 import { Redirect } from 'react-router';
+import { login } from '../../state/reducers/auth/';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import withLogin from '../../hoc/withAuth';
+import Alert from 'react-bootstrap/Alert';
+import withAuth from '../../hoc/withAuth';
 import HeaderContainer from '../HeaderContainer/HeaderContainer';
 import Container from 'react-bootstrap/Container';
 
@@ -10,12 +12,29 @@ const Login = props => {
   const refUsernameInput = React.createRef();
   const refPasswordInput = React.createRef();
 
-  const onLogin = () => {
-    props.login(refUsernameInput.current.value, refPasswordInput.current.value);
+  const [errorMessage, setErrorMessage] = React.useState(undefined);
+
+  const onLogin = event => {
+    event.preventDefault();
+    login(
+      refUsernameInput.current.value,
+      refPasswordInput.current.value,
+      onSuccess,
+      setErrorMessage
+    );
+  };
+
+  const onSuccess = (token, userId) => {
+    props.setUserId(userId);
+    props.setToken(token);
+  };
+
+  const handleMessageDismiss = () => {
+    setErrorMessage(undefined);
   };
 
   if (props.isLoggedIn) {
-    return <Redirect to="/" />;
+    return <Redirect to="/boards" />;
   }
 
   return (
@@ -24,7 +43,17 @@ const Login = props => {
         <span>Login</span>
       </HeaderContainer>
       <Container>
-        <Form>
+        {errorMessage ? (
+          <Alert
+            key="danger"
+            variant="danger"
+            dismissible
+            onClose={handleMessageDismiss}
+          >
+            {errorMessage}
+          </Alert>
+        ) : null}
+        <Form onSubmit={onLogin}>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Username</Form.Label>
             <Form.Control
@@ -42,7 +71,7 @@ const Login = props => {
               placeholder="Enter password"
             />
           </Form.Group>
-          <Button variant="light" onClick={onLogin}>
+          <Button type="submit" variant="light">
             Login
           </Button>
         </Form>
@@ -51,4 +80,4 @@ const Login = props => {
   );
 };
 
-export default withLogin(Login);
+export default withAuth(Login);

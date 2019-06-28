@@ -16,8 +16,9 @@ const Register = props => {
   const [successMessage, setSuccessMessage] = React.useState(undefined);
   const [errorMessage, setErrorMessage] = React.useState(undefined);
 
-  const onRegister = async () => {
+  const onRegister = async (event) => {
     try {
+      event.preventDefault();
       const message = await createUser(
         refEmailInput.current.value,
         refUsernameInput.current.value,
@@ -64,7 +65,7 @@ const Register = props => {
             </Alert>
           ) : null}
 
-          <Form>
+          <Form onSubmit={onRegister}>
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Email</Form.Label>
               <Form.Control
@@ -91,7 +92,7 @@ const Register = props => {
                 placeholder="Enter a password"
               />
             </Form.Group>
-            <Button variant="light" onClick={onRegister}>
+            <Button variant="light" type="submit">
               Register
             </Button>
           </Form>

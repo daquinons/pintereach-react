@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { login, setToken, setUserId } from '../state/reducers/auth';
 
-function withLogin(WrappedComponent) {
+function withAuth(WrappedComponent) {
   const ToExtend = class extends React.Component {
     componentDidMount() {
       if (!this.props.isLoggedIn) {
@@ -22,11 +22,10 @@ function withLogin(WrappedComponent) {
   )(ToExtend);
 }
 
-
 const mapStateToProps = state => {
   return {
-    isLoggedIn: !!state.auth.token && state.auth.token !== "null"
+    isLoggedIn: !!state.auth.token && state.auth.token !== 'null'
   };
 };
 
-export default withLogin;
+export default withAuth;
