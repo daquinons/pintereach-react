@@ -5,6 +5,8 @@ import { createUser } from '../../state/reducers/auth/';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
+import HeaderContainer from '../HeaderContainer/HeaderContainer';
+import Container from 'react-bootstrap/Container';
 
 const Register = props => {
   const refEmailInput = React.createRef();
@@ -21,7 +23,10 @@ const Register = props => {
         refUsernameInput.current.value,
         refPasswordInput.current.value
       );
-      if (typeof(message) === 'string') setSuccessMessage(message.charAt(0).toUpperCase() + message.substring(1));
+      if (typeof message === 'string')
+        setSuccessMessage(
+          message.charAt(0).toUpperCase() + message.substring(1)
+        );
     } catch (error) {
       setErrorMessage(error.message);
     }
@@ -33,54 +38,66 @@ const Register = props => {
 
   const handleMessageDismiss = () => {
     setErrorMessage(undefined);
-  }
+  };
 
   return (
-    <div className="register-form">
-      {successMessage ? (
-        <Alert key="success" variant="success">
-          {successMessage}
-        </Alert>
-      ) : null}
+    <>
+      <HeaderContainer>
+        <span>Register</span>
+      </HeaderContainer>
+      <Container>
+        <div className="register-form">
+          {successMessage ? (
+            <Alert key="success" variant="success">
+              {successMessage}
+            </Alert>
+          ) : null}
 
-      {errorMessage ? (
-        <Alert key="danger" variant="danger" dismissible onClose={handleMessageDismiss}>
-          {errorMessage}
-        </Alert>
-      ) : null}
+          {errorMessage ? (
+            <Alert
+              key="danger"
+              variant="danger"
+              dismissible
+              onClose={handleMessageDismiss}
+            >
+              {errorMessage}
+            </Alert>
+          ) : null}
 
-      <Form>
-        <Form.Group controlId="formBasicEmail">
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            ref={refEmailInput}
-            type="email"
-            placeholder="Enter an email"
-          />
-        </Form.Group>
+          <Form>
+            <Form.Group controlId="formBasicEmail">
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                ref={refEmailInput}
+                type="email"
+                placeholder="Enter an email"
+              />
+            </Form.Group>
 
-        <Form.Group controlId="formBasicUsername">
-          <Form.Label>Username</Form.Label>
-          <Form.Control
-            ref={refUsernameInput}
-            type="text"
-            placeholder="Enter a username"
-          />
-        </Form.Group>
+            <Form.Group controlId="formBasicUsername">
+              <Form.Label>Username</Form.Label>
+              <Form.Control
+                ref={refUsernameInput}
+                type="text"
+                placeholder="Enter a username"
+              />
+            </Form.Group>
 
-        <Form.Group controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            ref={refPasswordInput}
-            type="password"
-            placeholder="Enter a password"
-          />
-        </Form.Group>
-        <Button variant="primary" onClick={onRegister}>
-          Register
-        </Button>
-      </Form>
-    </div>
+            <Form.Group controlId="formBasicPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                ref={refPasswordInput}
+                type="password"
+                placeholder="Enter a password"
+              />
+            </Form.Group>
+            <Button variant="light" onClick={onRegister}>
+              Register
+            </Button>
+          </Form>
+        </div>
+      </Container>
+    </>
   );
 };
 

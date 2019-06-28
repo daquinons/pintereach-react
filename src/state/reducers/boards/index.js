@@ -1,4 +1,4 @@
-import { BOARDS_URL } from '../../../api';
+import { BOARDS_URL, ARTICLES_URL } from '../../../api';
 import * as types from '../../actions/boards/actionTypes';
 import * as authUtils from '../../../utils/auth';
 
@@ -28,3 +28,30 @@ export const getAllUserBoards = userId => async dispatch => {
     console.log(error);
   }
 };
+
+export const postBoard = (boardTitle, userId) => async dispatch => {
+  try {
+    await authUtils.axiosAuth().post(BOARDS_URL, {board_title: boardTitle, user_id: userId})
+    dispatch(getAllUserBoards(userId));
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const deleteBoard = (boardId, userId) => async dispatch => {
+  try {
+    await authUtils.axiosAuth().delete(`${BOARDS_URL}${boardId}`)
+    dispatch(getAllUserBoards(userId));
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const deleteArticle = (articleId, userId) => async dispatch => {
+  try {
+    await authUtils.axiosAuth().delete(`${ARTICLES_URL}${articleId}`)
+    dispatch(getAllUserBoards(userId));
+  } catch (error) {
+    console.log(error)
+  }
+}

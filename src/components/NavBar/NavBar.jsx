@@ -2,8 +2,27 @@ import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import withLogin from '../../hoc/withAuth';
+import styled from 'styled-components';
+
+const StyledNavbar = styled(Navbar)`
+  background-color: #0b000e;
+`;
+
+const StyledBrand = styled(Navbar.Brand)`
+  &&& {
+    color: #ff0075;
+  }
+`;
+
+const StyledNavLink = styled(NavLink)`
+  color: white;
+  margin-right: 1rem;
+  &:hover {
+    color: #ff0075;
+  }
+`;
 
 const NavBar = props => {
   const onLogout = () => {
@@ -11,48 +30,42 @@ const NavBar = props => {
   };
 
   return (
-    <Navbar collapseOnSelect expand="lg">
+    <StyledNavbar collapseOnSelect expand="lg" variant="dark">
       <Container>
-        <Link to="/">
-          <Navbar.Brand>Pintereach</Navbar.Brand>
-        </Link>
+        <StyledNavLink to="/">
+          <StyledBrand>Pintereach</StyledBrand>
+        </StyledNavLink>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
             {props.isLoggedIn ? (
               <>
-                <Link className="nav-link" to="/boards">
+                <StyledNavLink activeStyle={{color: '#ff0075'}} className="nav-NavLink" to="/boards">
                   My Boards
-                </Link>
-                <Link className="nav-link" to="/browse">
-                  Browse
-                </Link>
+                </StyledNavLink>
               </>
             ) : (
               undefined
             )}
-            <Link className="nav-link" to="/about">
-              About
-            </Link>
           </Nav>
           {props.isLoggedIn ? (
-            <Nav.Link onClick={onLogout} href="/#">
+            <StyledNavLink activeStyle={{color: '#ff0075'}} onClick={onLogout} to="/#">
               Logout
-            </Nav.Link>
+            </StyledNavLink>
           ) : (
             <>
-              <Link className="nav-link" to="/login">
+              <StyledNavLink activeStyle={{color: '#ff0075'}} className="nav-NavLink" to="/login">
                 Login
-              </Link>
-              <Link className="nav-link" to="/register">
+              </StyledNavLink>
+              <StyledNavLink activeStyle={{color: '#ff0075'}} className="nav-NavLink" to="/register">
                 Register
-              </Link>
+              </StyledNavLink>
             </>
           )}
           <Nav />
         </Navbar.Collapse>
       </Container>
-    </Navbar>
+    </StyledNavbar>
   );
 };
 
