@@ -23,7 +23,7 @@ const CardArticle = props => {
       <StyledCardBoardContainer onClick={openArticle}>
           <CloseButton onClick={onClose}>×</CloseButton>
           <h4>{article.article_label}</h4>
-          <p><a href={article.url} target="_blank" rel="noopener noreferrer">{article.url}</a></p>
+          <p><a href={article.url} target="_blank" rel="noopener noreferrer">Article Url</a></p>
       </StyledCardBoardContainer>
     </Card>
   );

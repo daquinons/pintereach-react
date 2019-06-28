@@ -2,6 +2,7 @@ import React from 'react';
 import NavBar from './components/NavBar/NavBar';
 import AppRouter from './components/AppRouter/AppRouter';
 import Container from 'react-bootstrap/Container';
+import MakerLink from './components/MakerLink/MakerLink';
 import styled from 'styled-components';
 
 const StyledContainer = styled(Container)`
@@ -26,6 +27,7 @@ const App = props => {
       <StyledContainer>
         <AppRouter />
       </StyledContainer>
+      <MakerLink />
     </>
   );
 };

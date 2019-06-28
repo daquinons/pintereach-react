@@ -12,6 +12,7 @@ const StyledCard = styled.div`
   box-shadow: rgba(0, 0, 0, 0.0470588) 0px 0px 0px 2px;
   margin-bottom: 1.5rem;
   margin-right: 1rem;
+  word-wrap: break-word;
 `;
 
 const Card = withRouter((props) => {
