@@ -2,6 +2,8 @@
 
 Follow me on Twitter! [@daquinons](https://twitter.com/daquinons)
 
+Find a deployed version of the project [here](https://pintereach-react.netlify.com) (Note: the server resets every few minutes, don't save anything important).
+
 
 ## Techstack
 - React
