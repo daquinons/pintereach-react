@@ -2,8 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 import { createUser } from '../../state/reducers/auth/';
+import withLoading from '../../hoc/withLoading';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Spinner from 'react-bootstrap/Spinner';
 import Alert from 'react-bootstrap/Alert';
 import HeaderContainer from '../HeaderContainer/HeaderContainer';
 import Container from 'react-bootstrap/Container';
@@ -16,9 +18,10 @@ const Register = props => {
   const [successMessage, setSuccessMessage] = React.useState(undefined);
   const [errorMessage, setErrorMessage] = React.useState(undefined);
 
-  const onRegister = async (event) => {
+  const onRegister = async event => {
     try {
       event.preventDefault();
+      props.setLoading(true);
       const message = await createUser(
         refEmailInput.current.value,
         refUsernameInput.current.value,
@@ -30,6 +33,8 @@ const Register = props => {
         );
     } catch (error) {
       setErrorMessage(error.message);
+    } finally {
+      props.setLoading(false);
     }
   };
 
@@ -92,9 +97,22 @@ const Register = props => {
                 placeholder="Enter a password"
               />
             </Form.Group>
-            <Button variant="light" type="submit">
-              Register
-            </Button>
+            {props.isLoading ? (
+              <Button variant="light" disabled>
+                <Spinner
+                  as="span"
+                  animation="grow"
+                  size="sm"
+                  role="status"
+                  aria-hidden="true"
+                />
+                &nbsp;Loading...
+              </Button>
+            ) : (
+              <Button variant="light" type="submit">
+                Register
+              </Button>
+            )}
           </Form>
         </div>
       </Container>
@@ -105,4 +123,4 @@ const Register = props => {
 export default connect(
   undefined,
   { createUser }
-)(Register);
+)(withLoading(Register));
