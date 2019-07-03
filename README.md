@@ -2,7 +2,7 @@
 
 Follow me on Twitter! [@daquinons](https://twitter.com/daquinons)
 
-Find a deployed version of the project [here](https://pintereach-react.netlify.com) (Note: the server resets every few minutes, don't save anything important). You can run your own server with [this](https://github.com/pintereach-pmltr/buildFTSG1-pintereach-BE)
+Find a deployed version of the project [here](https://getpintereach.netlify.com) (Note: the server resets every few minutes, don't save anything important). You can run your own server with [this](https://github.com/pintereach-pmltr/buildFTSG1-pintereach-BE)
 
 ![](https://i.imgur.com/g9xPWGx.png)
 
