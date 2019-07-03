@@ -3,19 +3,26 @@ import { Redirect } from 'react-router';
 import { login } from '../../state/reducers/auth/';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Spinner from 'react-bootstrap/Spinner';
 import Alert from 'react-bootstrap/Alert';
 import withAuth from '../../hoc/withAuth';
+import withLoading from '../../hoc/withLoading';
 import HeaderContainer from '../HeaderContainer/HeaderContainer';
 import Container from 'react-bootstrap/Container';
 
 const Login = props => {
   const refUsernameInput = React.createRef();
   const refPasswordInput = React.createRef();
-
+  const setLoading  = props.setLoading;
   const [errorMessage, setErrorMessage] = React.useState(undefined);
+
+  React.useEffect(() => {
+    setLoading(false);
+  }, [errorMessage, setLoading])
 
   const onLogin = event => {
     event.preventDefault();
+    props.setLoading(true);
     login(
       refUsernameInput.current.value,
       refPasswordInput.current.value,
@@ -27,6 +34,7 @@ const Login = props => {
   const onSuccess = (token, userId) => {
     props.setUserId(userId);
     props.setToken(token);
+    props.setLoading(false);
   };
 
   const handleMessageDismiss = () => {
@@ -71,13 +79,27 @@ const Login = props => {
               placeholder="Enter password"
             />
           </Form.Group>
-          <Button type="submit" variant="light">
-            Login
-          </Button>
+          {props.isLoading ? (
+              <Button variant="light" disabled>
+                <Spinner
+                  as="span"
+                  animation="grow"
+                  size="sm"
+                  role="status"
+                  aria-hidden="true"
+                />
+                &nbsp;Loading...
+              </Button>
+            ) : (
+              <Button variant="light" type="submit">
+                Login
+              </Button>
+            )}
+
         </Form>
       </Container>
     </>
   );
 };
 
-export default withAuth(Login);
+export default withAuth(withLoading(Login));
