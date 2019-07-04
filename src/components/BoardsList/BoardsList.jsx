@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getAllUserBoards, postBoard } from '../../state/reducers/boards';
+import { getAllUserBoards } from '../../state/reducers/boards';
 import withRestrictedToAuth from '../../hoc/withRestrictedToAuth';
 import ButtonLink from '../ButtonLink/ButtonLink';
 import HeaderContainer from '../HeaderContainer/HeaderContainer';
@@ -12,7 +12,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 const BoardsList = props => {
-  const { userId, getAllUserBoards, postBoard } = props;
+  const { userId, getAllUserBoards } = props;
   const [modalShow, setModalShow] = React.useState(false);
 
   React.useEffect(() => {
@@ -31,10 +31,10 @@ const BoardsList = props => {
           <Col className="text-md-right" sm={{ span: 1, offset: 7 }}>
             <ButtonLink onClick={() => setModalShow(true)}>Add</ButtonLink>
             <AddBoardForm
-              addBoard={postBoard}
               userId={userId}
               show={modalShow}
               onHide={modalClose}
+              onSuccess={props.getAllUserBoards}
             />
           </Col>
         </Row>
@@ -67,5 +67,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getAllUserBoards, postBoard }
+  { getAllUserBoards }
 )(withRestrictedToAuth(BoardsList));

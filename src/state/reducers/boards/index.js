@@ -29,12 +29,13 @@ export const getAllUserBoards = userId => async dispatch => {
   }
 };
 
-export const postBoard = (boardTitle, userId) => async dispatch => {
+export const postBoard = async (boardTitle, userId) =>  {
   try {
-    await authUtils.axiosAuth().post(BOARDS_URL, {board_title: boardTitle, user_id: userId})
-    dispatch(getAllUserBoards(userId));
+    const response = await authUtils.axiosAuth().post(BOARDS_URL, {board_title: boardTitle, user_id: userId})
+    return response;
   } catch (error) {
     console.log(error)
+    return error;
   }
 }
 
@@ -57,12 +58,13 @@ export const getArticles = async boardId => {
   }
 }
 
-export const postArticle = (articleLabel, articleUrl, boardId, userId) => async dispatch => {
+export const postArticle = async (articleLabel, articleUrl, boardId, userId) => {
   try {
-    await authUtils.axiosAuth().post(ARTICLES_URL, {article_label: articleLabel, url: articleUrl, board_id: boardId})
-    dispatch(getAllUserBoards(userId));
+    const response = await authUtils.axiosAuth().post(ARTICLES_URL, {article_label: articleLabel, url: articleUrl, board_id: boardId})
+    return response;
   } catch (error) {
     console.log(error)
+    return error;
   }
 }
 

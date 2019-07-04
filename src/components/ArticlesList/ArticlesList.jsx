@@ -1,10 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {
-  getAllUserBoards,
-  postArticle,
-  getArticles
-} from '../../state/reducers/boards';
+import { getAllUserBoards, getArticles } from '../../state/reducers/boards';
 import withRestrictedToAuth from '../../hoc/withRestrictedToAuth';
 import CardArticle from '../Card/CardArticle';
 import HeaderContainer from '../HeaderContainer/HeaderContainer';
@@ -16,7 +12,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 const ArticlesList = props => {
-  const { userId, getAllUserBoards, boards, postArticle, isLoggedIn } = props;
+  const { userId, getAllUserBoards, boards, isLoggedIn } = props;
   const boardId = props.match.params.id;
   const [currentBoard, setCurrentBoard] = React.useState();
   const [articles, setArticles] = React.useState([]);
@@ -60,7 +56,7 @@ const ArticlesList = props => {
               <Col className="text-md-right" sm={{ span: 1, offset: 7 }}>
                 <ButtonLink onClick={() => setModalShow(true)}>Add</ButtonLink>
                 <AddArticleForm
-                  addArticle={postArticle}
+                  onSuccess={props.getAllUserBoards}
                   boardId={boardId}
                   userId={userId}
                   show={modalShow}
@@ -102,5 +98,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getAllUserBoards, postArticle }
+  { getAllUserBoards }
 )(withRestrictedToAuth(ArticlesList));

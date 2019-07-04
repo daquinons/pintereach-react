@@ -1,20 +1,26 @@
 import React from 'react';
+import withLoading from '../../hoc/withLoading';
+import { postArticle } from '../../state/reducers/boards';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Spinner from 'react-bootstrap/Spinner';
 
 const AddArticleForm = props => {
   const refTitleInput = React.createRef();
   const refUrlInput = React.createRef();
 
-  const addArticle = event => {
+  const addArticle = async event => {
     event.preventDefault();
-    props.addArticle(
+    props.setLoading(true);
+    await postArticle(
       refTitleInput.current.value,
       refUrlInput.current.value,
       props.boardId,
       props.userId
     );
+    props.onSuccess(props.userId);
+    props.setLoading(false);
     props.onHide();
   };
 
@@ -52,13 +58,26 @@ const AddArticleForm = props => {
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="light" type="submit">
-            Add
-          </Button>
+          {props.isLoading ? (
+            <Button variant="light" disabled>
+              <Spinner
+                as="span"
+                animation="grow"
+                size="sm"
+                role="status"
+                aria-hidden="true"
+              />
+              &nbsp;Loading...
+            </Button>
+          ) : (
+            <Button variant="light" type="submit">
+              Add
+            </Button>
+          )}
         </Modal.Footer>
       </Form>
     </Modal>
   );
 };
 
-export default AddArticleForm;
+export default withLoading(AddArticleForm);
