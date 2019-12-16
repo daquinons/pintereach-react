@@ -2,10 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 
 const MakerLink = () => (
-<Link target="_blank" rel="noopener" href="https://twitter.com/daquinons">
-<Image src="https://pbs.twimg.com/profile_images/1123476640582049792/g-ftoX3x_200x200.png" />
-<Text>by David</Text>
-</Link>
+  <Link target="_blank" rel="noopener" href="https://twitter.com/daquinons">
+    <Image src="https://s.gravatar.com/avatar/a1ede2ec7577b8925b05c9a8f37bb47c?s=80" />
+    <Text>by David</Text>
+  </Link>
 );
 export default MakerLink;
 const Link = styled.a`
